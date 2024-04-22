@@ -153,7 +153,7 @@ const Login = () => {
                     {/* <Link to="/forgot-login">Forgot your password?</Link> */}
 
                     <button type="submit" className="btn" disabled={submitDisabled}>
-                    Enter
+                    LOGIN
                     </button>
                 </form>
             </div>
