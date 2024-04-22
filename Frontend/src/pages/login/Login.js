@@ -8,7 +8,6 @@ import LoginLayout from './Layout';
 import { API } from '../../env';
 
 const Login = () => {
-
     useEffect(() => {
         // Delete history in localStorage
         localStorage.clear();
@@ -60,26 +59,32 @@ const Login = () => {
     }, []);
 
     const [submitDisabled, setSubmitDisabled] = useState(false);
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+
     function handleUsernameChange(event) {
         setUsername(event.target.value);
     }
+
     function handlePasswordChange(event) {
         setPassword(event.target.value);
     }
 
-    // Show/hide password when the eye icon is clicked
-    const [showPassword, setShowPassword] = useState(false);
     function togglePasswordVisibility() {
         setShowPassword(!showPassword);
     }
 
-    // Manage system login
-    const navigate = useNavigate();
     async function handleFormSubmit(event) {
         event.preventDefault();
+
+        // Basic validation: Check if username and password are not empty
+        if (!username.trim() || !password.trim()) {
+            alert('Please enter both username and password.');
+            return;
+        }
+
         setSubmitDisabled(true);
         try {
             // Check login
@@ -96,26 +101,23 @@ const Login = () => {
             });
 
             if (response.ok) {
-                // Delete history in localStorage
-                localStorage.clear();
-                // token
                 const user = await response.json();
                 localStorage.setItem('user', JSON.stringify(user));
                 navigate('/home');
                 return;
             }
-            // Clear username and password fields
+
             setUsername('');
             setPassword('');
-
             navigate('/');
             alert("The credentials do not match.");
         } catch (error) {
             console.log(error);
-            // Clear username and password fields
             setUsername('');
             setPassword('');
             navigate('/');
+        } finally {
+            setSubmitDisabled(false);
         }
     }
 
@@ -150,10 +152,9 @@ const Login = () => {
                             </div>
                         </div>
                     </div>
-                    {/* <Link to="/forgot-login">Forgot your password?</Link> */}
 
                     <button type="submit" className="btn" disabled={submitDisabled}>
-                    LOGIN
+                        LOGIN
                     </button>
                 </form>
             </div>
