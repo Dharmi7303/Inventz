@@ -20,7 +20,7 @@
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/inventz.git
+   git clone https://github.com/Dharmi7303/inventz.git
    ```
 
 2. **Install dependencies:**
@@ -42,10 +42,6 @@
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## 🤝 Contributing
-
-We welcome contributions! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## 📞 Contact
 
