@@ -1,0 +1,178 @@
+/* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    /* ===== Colors ===== */
+    --body-color: #E4E9F7;
+    --sidebar-color: #24292E;
+    --primary-color: #dc7055;
+    --primary-color-light: #3a3b3c;
+    --secondary-color: #fd8d70;
+    --toggle-color: #fff;
+    --text-color: #ccc;
+    --navbar-color: #24292ef7;
+
+    /* ====== Transition ====== */
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+::selection {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+
+/* ===== Sidebar ===== */
+.sidebar-container {
+    position: fixed;
+    z-index: 2;
+}
+
+
+/* ===== Navbar ===== */
+.navbar-container {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    width: calc(100% - 250px);
+    transition: var(--tran-03);
+    z-index: 1;
+}
+
+
+/* ===== Content ===== */
+.main-content {
+    position: absolute;
+    top: 70px;
+    left: 250px;
+    padding-top: 30px;
+    height: calc(100% - 70px);
+    width: calc(100% - 250px);
+    background-color: var(--toggle-color);
+    transition: var(--tran-03);
+}
+
+.main-content .text {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--primary-color-light);
+    padding: 12px 60px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+}
+
+.main-content .options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ===== Tables ===== */
+
+.main-content .table-container {
+    position: relative;
+    /*display: flex;
+    justify-content: center;
+    align-items: center;*/
+    top: 60px;
+    width: 80%;
+    margin: auto;
+    /*background-color: #000000;*/
+}
+
+.main-content .table {
+    /*position: relative;
+    top:  60px;*/
+    display: table;
+    /*margin-left: auto;
+    margin-right: auto;*/
+    width: 100%;
+    /*background-color: var(--sidebar-color);*/
+    border-collapse: collapse;
+}
+
+.main-content .table thead {
+    font-size: 15px;
+    background-color: var(--navbar-color);
+    color: white;
+}
+
+.main-content .table tr {
+    height: 50px;
+}
+
+.main-content .table td {
+    text-align: center;
+}
+
+.main-content .table tr:nth-child(odd) td {
+    /* Filas impares */
+    background-color: #f2f2f2;
+}
+
+.main-content .table tr:nth-child(even) td {
+    /* Filas pares */
+    background-color: #e6e6e6;
+}
+
+.main-content .table .details-icon {
+    color: #009688;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    transition: var(--tran-03);
+}
+
+.main-content .table .details-icon:hover {
+    color: #05baa8;
+}
+
+.main-content .table .pen-icon {
+    color: rgb(94, 132, 237);
+    margin-right: 18px;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    transition: var(--tran-03);
+    margin: auto;
+}
+
+.main-content .table .pen-icon:hover {
+    color: rgb(0, 170, 255);
+}
+
+.main-content .table .trash-icon {
+    color: var(--primary-color);
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    transition: var(--tran-03);
+}
+
+.main-content .table .trash-icon:hover {
+    color: rgb(255, 60, 0);
+}
+
+/* ===== Components when sidebar is closed ===== */
+.sidebar-container.close~.navbar-container {
+    left: 88px;
+    width: calc(100% - 88px);
+}
+
+.sidebar-container.close~.main-content {
+    left: 88px;
+    width: calc(100% - 88px);
+}
