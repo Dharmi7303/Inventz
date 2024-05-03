@@ -193,7 +193,7 @@ const Home = () => {
                                 ? (dataSummary.sales.saleMoneyInLastMonth.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) + " in " + dataSummary.sales.totalSalesInLastMonth + " sale" + (dataSummary.sales.totalSalesInLastMonth > 1 ? "s" : ""))
                                 : "No sales in the last month"
                             }
-                        </p>
+                        </p>    
                     </div>
                     <div className="item">
                         <h4>Last week</h4>
