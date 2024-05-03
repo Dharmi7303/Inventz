@@ -1,5 +1,6 @@
 package com.inventorysystem.Backend.controller;
 
+import com.inventorysystem.Backend.dto.customer.CustomerDTO;
 import com.inventorysystem.Backend.dto.provider.ProviderCreationDTO;
 import com.inventorysystem.Backend.dto.provider.ProviderDTO;
 import com.inventorysystem.Backend.dto.provider.ProviderUpdateDTO;
@@ -37,6 +38,15 @@ public class ProviderController {
     ResponseEntity<ProviderDTO> getProviderById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(providerService.getProviderById(id));
     }
+
+//    @GetMapping("/document/{document}")
+//    ResponseEntity<CustomerDTO> getProviderByDocument(@PathVariable String document) {
+//        CustomerDTO foundprovider = providerService.getProviderByDocument(document);
+//        if (foundProvider == null) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//        }
+//        return ResponseEntity.status(HttpStatus.OK).body(foundProvider);
+//    }
 
     @PutMapping("/{id}")
     ResponseEntity<ProviderDTO> updateProvider(@PathVariable Long id, @RequestBody ProviderUpdateDTO providerData) {

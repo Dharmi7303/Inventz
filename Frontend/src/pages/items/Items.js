@@ -98,13 +98,19 @@ const Items = () => {
                                         <td>{article.brand}</td>
                                         <td>{article.category.name}</td>
                                         <td>{article.stock}</td>
-                                        <td>{article.purchasePrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
-                                        <td>{article.salePrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+                                        <td>{(article.purchasePrice * 75).toLocaleString('en-IN', {
+                                            style: 'currency',
+                                            currency: 'INR'
+                                        })}</td>
+                                        <td>{(article.salePrice * 75).toLocaleString('en-IN', {
+                                            style: 'currency',
+                                            currency: 'INR'
+                                        })}</td>
                                         <td>{article.weight}</td>
                                         <td>{article.provider.name}</td>
                                         <td>
                                             <Link to={`/edit-item/${article.articleId}`}>
-                                                <FontAwesomeIcon icon={faPen} className="pen-icon" />
+                                                <FontAwesomeIcon icon={faPen} className="pen-icon"/>
                                             </Link>
                                         </td>
                                     </tr>

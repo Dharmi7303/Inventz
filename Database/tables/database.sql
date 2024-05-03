@@ -113,4 +113,4 @@ CREATE TABLE IF NOT EXISTS `sale_detail` (
 
 -- Insert default admin user
 INSERT INTO `user` (`name`, `username`, `password_hash`, `phone_number`, `email`, `admin`) VALUES
-('Admin', 'admin', '$2a$10$zieG5gmvhTZghHVPB6prk.gRKAB6979Od/wO/HEDFfZkbaduue4AK', '0000000000', 'admin@pedrinibike.com', TRUE);
+('Admin', 'admin', '$2a$10$zieG5gmvhTZghHVPB6prk.gRKAB6979Od/wO/HEDFfZkbaduue4AK', '0000000000', 'admin@gmail.com', TRUE);
