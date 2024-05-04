@@ -39,15 +39,6 @@ public class ProviderController {
         return ResponseEntity.status(HttpStatus.OK).body(providerService.getProviderById(id));
     }
 
-//    @GetMapping("/document/{document}")
-//    ResponseEntity<CustomerDTO> getProviderByDocument(@PathVariable String document) {
-//        CustomerDTO foundprovider = providerService.getProviderByDocument(document);
-//        if (foundProvider == null) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//        }
-//        return ResponseEntity.status(HttpStatus.OK).body(foundProvider);
-//    }
-
     @PutMapping("/{id}")
     ResponseEntity<ProviderDTO> updateProvider(@PathVariable Long id, @RequestBody ProviderUpdateDTO providerData) {
         ProviderDTO updatedProvider = providerService.updateProvider(id, providerData);

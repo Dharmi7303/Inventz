@@ -190,16 +190,16 @@ const Home = () => {
                         <h4>Last month</h4>
                         <p>
                             {dataSummary && dataSummary.sales && dataSummary.sales.totalSalesInLastMonth > 0
-                                ? (dataSummary.sales.saleMoneyInLastMonth.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) + " in " + dataSummary.sales.totalSalesInLastMonth + " sale" + (dataSummary.sales.totalSalesInLastMonth > 1 ? "s" : ""))
+                                ? (dataSummary.sales.saleMoneyInLastMonth.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) + " in " + dataSummary.sales.totalSalesInLastMonth  + " sale" + (dataSummary.sales.totalSalesInLastMonth > 1 ? "s" : ""))
                                 : "No sales in the last month"
                             }
-                        </p>    
+                        </p>
                     </div>
                     <div className="item">
                         <h4>Last week</h4>
                         <p>
                             {dataSummary && dataSummary.sales && dataSummary.sales.totalSalesInLastWeek > 0
-                                ? (dataSummary.sales.saleMoneyInLastWeek.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) + " in " + dataSummary.sales.totalSalesInLastWeek + " sale" + (dataSummary.sales.totalSalesInLastWeek > 1 ? "s" : ""))
+                                ? (dataSummary.sales.saleMoneyInLastWeek.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) + " in " + dataSummary.sales.totalSalesInLastWeek  + " sale" + (dataSummary.sales.totalSalesInLastWeek > 1 ? "s" : ""))
                                 : "No sales in the last week"
                             }
                         </p>
@@ -208,7 +208,7 @@ const Home = () => {
                         <h4>Last year</h4>
                         <p>
                             {dataSummary && dataSummary.sales && dataSummary.sales.totalSalesInLastYear > 0
-                                ? (dataSummary.sales.saleMoneyInLastYear.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) + " in " + dataSummary.sales.totalSalesInLastYear + " sale" + (dataSummary.sales.totalSalesInLastYear > 1 ? "s" : ""))
+                                ? (dataSummary.sales.saleMoneyInLastYear.toLocaleString('en-IN', { style: 'currency', currency: 'INR' }) + " in " + dataSummary.sales.totalSalesInLastYear  + " sale" + (dataSummary.sales.totalSalesInLastYear > 1 ? "s" : ""))
                                 : "No sales in the last year"
                             }
                         </p>

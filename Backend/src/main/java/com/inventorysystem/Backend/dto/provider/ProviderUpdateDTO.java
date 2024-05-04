@@ -10,4 +10,7 @@ import lombok.NoArgsConstructor;
 public class ProviderUpdateDTO {
     private String phoneNumber;
     private String email;
+    private String address; // Add new field
+    private String state;   // Add new field
+    private String city;
 }

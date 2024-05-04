@@ -88,7 +88,7 @@ public class CustomerServiceImp implements CustomerService {
     public CustomerDTO getCustomerByDocument(String document) {
         Customer foundCustomer = customerRepository.findByDocument(document);
         if (foundCustomer == null) {
-            System.out.println("El cliente no está registrado");
+            System.out.println("The client is not registered.");
             return null;
         }
         return customerMapper.customerToDTO(foundCustomer);
@@ -101,7 +101,7 @@ public class CustomerServiceImp implements CustomerService {
 
         if (!customerData.getEmail().equalsIgnoreCase(foundCustomer.getEmail()) &&
             customerRepository.findByEmail(customerData.getEmail()) != null) {
-            System.out.println("El correo no está disponible");
+            System.out.println("The email is not available.");
             return null;
         }
 

@@ -12,7 +12,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "provider")
 public class Provider {
     @Id
@@ -28,6 +31,15 @@ public class Provider {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "address") // New field for address
+    private String address;
+
+    @Column(name = "state") // New field for state
+    private String state;
+
+    @Column(name = "city") // New field for city
+    private String city;
 
     @Column(name = "created_at")
     @CreationTimestamp

@@ -12,4 +12,7 @@ public class ProviderDTO {
     private String name;
     private String phoneNumber;
     private String email;
+    private String address; // Add new field
+    private String state;   // Add new field
+    private String city;
 }

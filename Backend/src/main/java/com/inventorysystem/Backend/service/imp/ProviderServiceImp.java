@@ -35,7 +35,10 @@ public class ProviderServiceImp implements ProviderService {
         Long newProviderId = providerRepository.createProvider(
                 provider.getName(),
                 provider.getPhoneNumber(),
-                provider.getEmail()
+                provider.getEmail(),
+                provider.getAddress(),
+                provider.getState(),
+                provider.getCity()
         );
         return getProviderById(newProviderId);
     }
@@ -49,7 +52,7 @@ public class ProviderServiceImp implements ProviderService {
 
         Page<Provider> providerPage;
 
-        if (criteria == null || criteria.length() == 0) {
+        if (criteria == null || criteria.isEmpty()) {
             providerPage = providerRepository.findAll(pageable);
         } else {
             providerPage = providerRepository.findAll(ProviderSpecifications.searchProviders(criteria), pageable);
@@ -84,22 +87,28 @@ public class ProviderServiceImp implements ProviderService {
         Provider foundProvider = providerRepository.getProviderById(providerId);
 
         if (!providerData.getEmail().equalsIgnoreCase(foundProvider.getEmail()) &&
-            providerRepository.findByEmail(providerData.getEmail()) != null) {
-            System.out.println("El correo no está disponible");
+                providerRepository.findByEmail(providerData.getEmail()) != null) {
+            System.out.println("Email is not available");
             return null;
         }
 
         foundProvider.setPhoneNumber(providerData.getPhoneNumber());
         foundProvider.setEmail(providerData.getEmail());
+        foundProvider.setAddress(providerData.getAddress());
+        foundProvider.setState(providerData.getState());
+        foundProvider.setCity(providerData.getCity());
 
         providerRepository.updateProvider(
                 foundProvider.getProviderId(),
                 foundProvider.getName(),
                 foundProvider.getPhoneNumber(),
-                foundProvider.getEmail()
+                foundProvider.getEmail(),
+                foundProvider.getAddress(),
+                foundProvider.getState(),
+                foundProvider.getCity()
         );
 
-        // Call class method for get by provider id
-        return getProviderById(foundProvider.getProviderId());
+        // Return the updated provider
+        return providerMapper.providerToDTO(foundProvider);
     }
 }

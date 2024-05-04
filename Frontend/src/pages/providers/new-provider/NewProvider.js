@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import userVerification from '../../../utils/userVerification';
 import { API } from '../../../env';
@@ -9,21 +9,15 @@ const NewProvider = () => {
     localStorage.setItem('selectedView', 'providers');
     const navigate = useNavigate();
 
-    useEffect(() => {
-        // Permission validation
-        if (!userVerification().isAuthenticated) {
-            localStorage.clear();
-            navigate('/login');
-            return;
-        }
-    }, [navigate]);
-
     const [submitDisabled, setSubmitDisabled] = useState(false);
 
     const [formData, setFormData] = useState({
         name: '',
         phoneNumber: '',
-        email: ''
+        email: '',
+        address: '',
+        state: '',
+        city: ''
     });
 
     const handleChange = (event) => {
@@ -102,6 +96,45 @@ const NewProvider = () => {
                                 id="email"
                                 maxLength="100"
                                 value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="form-item">
+                            <label htmlFor="address">Address</label>
+                            <input
+                                className="input"
+                                type="text"
+                                id="address"
+                                maxLength="100"
+                                value={formData.address}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="form-item">
+                            <label htmlFor="state">State</label>
+                            <input
+                                className="input"
+                                type="text"
+                                id="state"
+                                maxLength="100"
+                                value={formData.state}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="form-item">
+                            <label htmlFor="city">City</label>
+                            <input
+                                className="input"
+                                type="text"
+                                id="city"
+                                maxLength="100"
+                                value={formData.city}
                                 onChange={handleChange}
                                 required
                             />

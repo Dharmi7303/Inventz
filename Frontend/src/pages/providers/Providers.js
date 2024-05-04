@@ -31,28 +31,35 @@ const Providers = () => {
         }
 
         // Query paginated data
-        const data = new FormData();
-        if (query.length > 0) {
-            data.append('searchCriteria', query);
-        }
-        data.append('page', page);
-        data.append('pageSize', pageSize);
+        const fetchData = async () => {
+            try {
+                const data = new FormData();
+                if (query.length > 0) {
+                    data.append('searchCriteria', query);
+                }
+                data.append('page', page);
+                data.append('pageSize', pageSize);
 
-        const url = new URL(`${API}/api/v1/provider`);
-        url.search = new URLSearchParams(data).toString();
-        (async () => {
-            await fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    setPaginator(data);
-                    setIsLoading(false);
-                })
-                .catch(error => console.log(error))
-        })();
+                const url = new URL(`${API}/api/v1/provider`);
+                url.search = new URLSearchParams(data).toString();
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                const responseData = await response.json();
+                setPaginator(responseData);
+                setIsLoading(false);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
     }, [navigate, query, page]);
 
     const handleSearch = (query) => {
         setQuery(query);
+        setPage(1); // Reset page to 1 when performing a new search
     }
 
     const handlePage = (page) => {
@@ -61,9 +68,7 @@ const Providers = () => {
 
     return (
         <div className="providers-container">
-
             <div className="text">Providers</div>
-
             <div className="options">
                 <SearchBox onSearch={handleSearch} disabled={isLoading} />
                 <Link to="/new-provider" className="add-box">
@@ -71,48 +76,51 @@ const Providers = () => {
                     <span className="text">New Provider</span>
                 </Link>
             </div>
-
             {!isLoading ? (
                 <div className="table-container">
                     <table className="table">
                         <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>NAME</th>
-                                <th>PHONE</th>
-                                <th>EMAIL</th>
-                                <th>EDIT</th>
-                            </tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>PHONE</th>
+                            <th>EMAIL</th>
+                            <th>ADDRESS</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>EDIT</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            {paginator.providers && paginator.providers.length > 0 ? (
-                                paginator.providers.map(provider => (
-                                    <tr key={provider.providerId}>
-                                        <td>{provider.providerId}</td>
-                                        <td>{provider.name}</td>
-                                        <td>{provider.phoneNumber}</td>
-                                        <td>{provider.email}</td>
-                                        <td>
-                                            <Link to={`/edit-provider/${provider.providerId}`}>
-                                                <FontAwesomeIcon icon={faPen} className="pen-icon" />
-                                            </Link>
-                                        </td>
-                                    </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td colSpan="5">No results found</td>
+                        {paginator.providers && paginator.providers.length > 0 ? (
+                            paginator.providers.map(provider => (
+                                <tr key={provider.providerId}>
+                                    <td>{provider.providerId}</td>
+                                    <td>{provider.name}</td>
+                                    <td>{provider.phoneNumber}</td>
+                                    <td>{provider.email}</td>
+                                    <td>{provider.address}</td>
+                                    <td>{provider.state}</td>
+                                    <td>{provider.city}</td>
+                                    <td>
+                                        <Link to={`/edit-provider/${provider.providerId}`}>
+                                            <FontAwesomeIcon icon={faPen} className="pen-icon"/>
+                                        </Link>
+                                    </td>
                                 </tr>
-                            )}
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="5">No results found</td>
+                            </tr>
+                        )}
                         </tbody>
                     </table>
-
                     <Pagination paginator={paginator} onChangePage={handlePage} />
                 </div>
             ) : (
                 <Loading />
             )}
-
         </div>
     );
 }
