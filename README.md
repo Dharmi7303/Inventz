@@ -43,6 +43,3 @@
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-## 📞 Contact
-
-Have questions or feedback? Reach out to us at inventz.management@gmail.com 📧
